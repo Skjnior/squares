@@ -157,5 +157,5 @@ Le correcteur attend que tu **comprennes** chaque partie (boucle d’événement
 
 ## 9. Références
 
-- [Piston — site officiel](https://www.piston.rs/)
+- [Piston site officiel](https://www.piston.rs/)
 - [Tutoriel « getting started » Piston](https://github.com/PistonDevelopers/Piston-Tutorials/tree/master/getting-started)
