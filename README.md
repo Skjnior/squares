@@ -1,4 +1,4 @@
-# Projet « squares » — Programmation bas niveau
+# Projet « squares » Programmation bas niveau
 
 **Cours :** Programmation bas niveau (UPEC)  
 **Outil :** Rust + [Piston](https://www.piston.rs/)  
