@@ -89,19 +89,19 @@ main()
 
 ## 6. Comprendre `main.rs` (par blocs)
 
-### Bloc A — Imports et constantes (l. 8–23)
+### Bloc A Imports et constantes (l. 8–23)
 
 - `std::env::args` (via `main`) : arguments du terminal.
 - `HashSet` : détecter les lettres déjà utilisées.
 - Constantes `WINDOW_*`, `SQUARE_SIZE`, `MOVE_SPEED` : taille fenêtre, carré, vitesse en pixels/seconde.
 
-### Bloc B — Convention des touches (l. 25–48)
+### Bloc B Convention des touches (l. 25–48)
 
 - `KeyConvention` : enum des interprétations possibles d’un bloc de 4 caractères.
 - `KEY_CONVENTION` : choix actuel (un seul endroit à modifier).
 - `controls_from_keys` : transforme `[Key; 4]` en struct `Controls` (up/down/left/right).
 
-### Bloc C — Structures `Controls` et `Square` (l. 50–121)
+### Bloc C Structures `Controls` et `Square` (l. 50-121)
 
 - **`Controls`** : les 4 touches Piston (`Key::A`, etc.) pour un carré.
 - **`Square`** : position `(x, y)`, couleur RGBA, contrôles, et 4 booléens « touche maintenue ».
@@ -112,11 +112,11 @@ main()
 
 **`step`** : à chaque frame, calcule `dx`/`dy` avec `MOVE_SPEED * dt`, met à jour la position, **clamp** pour rester dans la fenêtre.
 
-### Bloc D — `key_from_char` (l. 124–154)
+### Bloc D  `key_from_char` (l. 124-154)
 
 Convertit une lettre `A`–`Z` (minuscule acceptée) en `piston::input::Key`. Piston ne fournit pas de conversion automatique char → `Key` pour toutes les touches ; le `match` est explicite (exigence de compréhension du code).
 
-### Bloc E — `parse_square_groups` (l. 156–203)
+### Bloc E `parse_square_groups` (l. 156-203)
 
 1. Refuse l’absence d’arguments.
 2. Pour chaque argument : exactement 4 lettres alphabétiques ASCII.
@@ -125,18 +125,18 @@ Convertit une lettre `A`–`Z` (minuscule acceptée) en `piston::input::Key`. Pi
 
 Retourne `Result<_, String>` pour des messages d’erreur lisibles.
 
-### Bloc F — `App` : rendu et logique jeu (l. 205–236)
+### Bloc F `App` : rendu et logique jeu (l. 205-236)
 
 - **`render`** : `GlGraphics::draw` efface l’écran (fond sombre), dessine chaque carré avec `graphics::rectangle` et une transformation `trans(x, y)`.
 - **`update`** : appelle `step` sur chaque carré avec `args.dt` (delta temps en secondes — fourni par Piston).
 - **`on_key`** : propage chaque événement clavier à **tous** les carrés ; seuls ceux qui possèdent cette touche bougent (les autres ignorent dans `apply_key`).
 
-### Bloc G — `main` (l. 238–281)
+### Bloc G `main` (l. 238-281)
 
 1. Parse les arguments ; `exit(1)` si erreur.
 2. Construit les `Square`.
 3. Crée la fenêtre : `WindowSettings::new`, API OpenGL 3.2, `exit_on_esc(true)`.
-4. Boucle **`while let Some(e) = events.next(&mut window)`** — cœur Piston :
+4. Boucle **`while let Some(e) = events.next(&mut window)`** - cœur Piston :
    - `press_args` / `release_args` : clavier
    - `render_args` : redessiner
    - `update_args` : physique / mouvement
